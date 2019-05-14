@@ -107,22 +107,22 @@ if (signal == 0) {
   }
 
 
-  j=0;
-  string strArr []={"1,h","2,e","3,l","4,l","5,o"};
-  for (auto i: zip(range(1,6), string("hello")))
-  {
-		testcase.CHECK_OUTPUT(i,strArr[j]);
-		j++;
+//   j=0;
+//   string strArr []={"1,h","2,e","3,l","4,l","5,o"};
+//   for (auto i: zip(range(1,6), string("hello")))
+//   {
+// 		testcase.CHECK_OUTPUT(i,strArr[j]);
+// 		j++;
 
-  }
-j=0;
-string strArr2 []={"2,n","3,a","4,o","5,r","6,e"};
-for (auto i: zip(range(2,7), string("naore")))
-{
-		testcase.CHECK_OUTPUT(i,strArr2[j]);
-		j++;
+//   }
+// j=0;
+// string strArr2 []={"2,n","3,a","4,o","5,r","6,e"};
+// for (auto i: zip(range(2,7), string("naore")))
+// {
+// 		testcase.CHECK_OUTPUT(i,strArr2[j]);
+// 		j++;
 
-}
+// }
 
 ///product test
 testcase.setname(" check product");
