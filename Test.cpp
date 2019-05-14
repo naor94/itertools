@@ -47,11 +47,7 @@ if (signal == 0) {
 		testcase.CHECK_EQUAL(i,j1);
 		j1+=1;
 		}
-	int j6 = -5.1;
-	// for (double i: range(-5.1,9.1)){
-	// 	testcase.CHECK_EQUAL(i,j1);
-	// 	j1++;
-	// 	}
+
 	char j2='a';
 	for (char i: range('a','e')){
 		testcase.CHECK_EQUAL(i,j2);
@@ -80,19 +76,21 @@ if (signal == 0) {
 	// j=0;
 	// for (int i: chain(range(-5.1,-2.1), range(5.1,8.1))){
 	// 	testcase.CHECK_EQUAL(i,arr2[j]);    // prints 123567
+	// 	if(j==5) break;
 	// 	j++;
+		
 	// }
 	
-// 	char str [] = "abchello";
-// 	for (char i: chain(range('a','e'), string("hello"))){
-// 		   testcase.CHECK_EQUAL(i,str[j]); // abcdhello
+	char str [] = "abchello";
+	for (char i: chain(range('a','e'), string("hello"))){
+		   testcase.CHECK_EQUAL(i,str[j]); // abcdhello
 		   
-// }
-	// char str1 [] = "helloabc";
+}
+	// char str1 [] = "helloabcd";
 	// for (char i: chain( (string("hello")),range('a','e'))){
 	// 	   testcase.CHECK_EQUAL(i,str1[j]); // abcdhello
 	// 	   }
-//
+
 
 		  /////zip check 
 	testcase.setname("zip check");
@@ -145,14 +143,7 @@ testcase.setname(" check product");
 
     }
 
-    // j=0;
-		// string productAns2 []={"-3,q","-3,w","-3,e","-2,q","-2,w","-2,e", "-1,q", "-1,w", "-1,r"};
-    // for (auto i: product(range(-3,0), string("qwe")))
-    // {
-		// testcase.CHECK_OUTPUT(i,productAns[j]);
-		// j++;
-
-    // }
+   
 
 		////check powerset
 
