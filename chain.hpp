@@ -1,68 +1,69 @@
-#include "iostream"
+#pragma once
 
-namespace itertools {
+#include <iterator>
+#include<iostream>
 
-template <typename Template1, typename Template2>
-class chain {
+using namespace std;
 
-private:
-Template1 it1;
-Template2 it2;
+namespace itertools{
 
-public:
-chain(Template1 start, Template2 end) :  it1(start), it2(end) {
-}
+  template <typename CONTAINER_1,typename CONTAINER_2>
+  class chain{
 
-auto begin(){
-        return iterator<decltype(it1.begin()),decltype(it2.begin())>(it1.begin(), it2.begin());
-}
+  CONTAINER_1 A1; // iterator for first type
+  CONTAINER_2 A2; // iterator for second type
 
-auto end() {
-        return iterator<decltype(it1.end()),decltype(it2.end())>(it1.end(), it2.end());
-}
-template <typename C1, typename C2>
-class iterator {
+  public:
 
-private:
-C1 it1;
-C2 it2;
-bool some;
+    chain(CONTAINER_1 a,CONTAINER_2 b) : A1(a),A2(b){}
 
-public:
-iterator(C1 itA, C2 itB) : it1(itA), it2(itB), some(true)  {
-}
 
-iterator<C1,C2>& operator++() {
-        if(some==true)
-                ++it1;
+    template<typename E1,typename E2>
+    class iterator{
+    public :
+
+    E1 A; // first iterator
+    E2 B; // second iterator
+
+    int position; // 0 for the first range and 1 for the second
+
+    iterator(E1 val1,E2 val2) : A(val1),B(val2),position(0){}
+
+    iterator& operator++() // advaced value
+    {
+        if(position == 0)
+          ++A;
         else
-                ++it2;
+          ++B;
         return *this;
-}
- decltype(*it1) operator*() const {
+    }
 
-        if(some)
-                return *it1;
-        else
-                return *it2;
-}
-bool operator!=(iterator<C1,C2>  it){
-        if(some && !(it1 != it.it1)) {
-                some = false;
-        }
-        if(some) {
-                return it1 != it.it1;
-        }else{
-                return it2 != it.it2;
-        }
-}
-const iterator operator++(int) {
+     auto operator*() const
+     {
+             if(position == 0)
+                 return *A;
+             else
+                 return *B;
+    }
 
-}
-bool operator==(iterator itr) const {
+    bool operator!= (const iterator& temp)
+    {
+      if (position == 0 && !(A != (temp.A))) // continue to the next range
+           position = 1;
+      if(position == 0)
+      return A != temp.A;
+      else
+      return B != temp.B;
+     }
 
-}
+    };
+
+    auto begin() const{
+       return iterator<decltype(A1.begin()),decltype(A2.begin())>(A1.begin(), A2.begin()); // iteratable object
+    }
+    auto end() const{
+       return iterator<decltype(A1.end()),decltype(A2.end())>(A1.end(), A2.end()); // iteratable object
+    }
+
+  };
 };
-
-};
-}
